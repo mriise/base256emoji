@@ -37,7 +37,6 @@ pub trait Base {
 	}
 
 	fn encode(input: &Vec<u8>) -> String {
-		// is size esimation really necessary?
 		let s = input
 			.iter()
 			.map(|&x| Self::ALPHABET[x as usize].len_utf8())
