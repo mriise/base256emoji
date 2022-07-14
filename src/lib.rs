@@ -65,6 +65,9 @@ pub struct Emoji {
 #[derive(Debug, Default)]
 pub struct EmojiE;
 
+#[derive(Debug, Default)]
+pub struct EmojiM;
+
 impl Default for Emoji {
     fn default() -> Self {
 		let mut lookup = FnvIndexMap::new();
@@ -130,6 +133,21 @@ impl Base for EmojiE {
 		Self::ALPHABET.iter().position(|&x| c == x).map(|c| c as u8)
 	}
 }
+
+macro_rules! gen_alphabet {
+	($name:ident, $alphabet:literal) => {
+		impl Base for $name {
+			const ALPHABET: [char; 256] = const_str::to_char_array!($alphabet);
+
+			fn get_index(&self, c: char) -> Option<u8> {
+				match_lookup::gen_char_match!(c, $alphabet).map(|c| c as u8)
+			}
+		}
+	};
+}
+
+gen_alphabet!(EmojiM, "🚀🪐☄🛰🌌🌑🌒🌓🌔🌕🌖🌗🌘🌍🌏🌎🐉☀💻🖥💾💿😂❤😍🤣😊🙏💕😭😘👍😅👏😁🔥🥰💔💖💙😢🤔😆🙄💪😉☺👌🤗💜😔😎😇🌹🤦🎉💞✌✨🤷😱😌🌸🙌😋💗💚😏💛🙂💓🤩😄😀🖤😃💯🙈👇🎶😒🤭❣😜💋👀😪😑💥🙋😞😩😡🤪👊🥳😥🤤👉💃😳✋😚😝😴🌟😬🙃🍀🌷😻😓⭐✅🥺🌈😈🤘💦✔😣🏃💐☹🎊💘😠☝😕🌺🎂🌻😐🖕💝🙊😹🗣💫💀👑🎵🤞😛🔴😤🌼😫⚽🤙☕🏆🤫👈😮🙆🍻🍃🐶💁😲🌿🧡🎁⚡🌞🎈❌✊👋😰🤨😶🤝🚶💰🍓💢🤟🙁🚨💨🤬✈🎀🍺🤓😙💟🌱😖👶🥴▶➡❓💎💸⬇😨🌚🦋😷🕺⚠🙅😟😵👎🤲🤠🤧📌🔵💅🧐🐾🍒😗🤑🌊🤯🐷☎💧😯💆👆🎤🙇🍑❄🌴💣🐸💌📍🥀🤢👅💡💩👐📸👻🤐🤮🎼🥵🚩🍎🍊👼💍📣🥂");
+
 
 #[cfg(test)]
 mod tests {
