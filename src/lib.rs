@@ -59,7 +59,7 @@ pub struct Emoji;
 macro_rules! gen_alphabet {
 	($name:ident, $alphabet:literal) => {
 		impl Base for $name {
-			const ALPHABET: [char; 256] = const_str::to_char_array!($alphabet);
+			const ALPHABET: Alphabet = const_str::to_char_array!($alphabet);
 
 			fn get_index(c: char) -> Option<u8> {
 				match_lookup::gen_char_match!(c, $alphabet).map(|c| c as u8)
