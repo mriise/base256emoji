@@ -92,7 +92,7 @@ mod tests {
 
 	#[test]
 	fn index() {
-		for (i, &c) in Emoji::ALPHABET.iter().enumerate(){
+		for (i, &c) in Emoji::ALPHABET.iter().enumerate() {
 			println!("i{}:{}, {:?}", i, c, Emoji::get_index(c));
 			assert!(i as u8 == Emoji::get_index(c).unwrap());
 		}
@@ -103,6 +103,14 @@ mod tests {
 		let hi = "hi juan!";
 		let encoded = Emoji::encode(&hi.as_bytes().to_owned());
 		assert_eq!("😴🌟😅😬🤘🤤😻👏", encoded);
+		println!("{}: {}", hi, encoded);
+	}
+
+	#[test]
+	fn reference() {
+		let hi = "yes mani !";
+		let encoded = Emoji::encode(&hi.as_bytes().to_owned());
+		assert_eq!("🏃✋🌈😅🌷🤤😻🌟😅👏", encoded);
 		println!("{}: {}", hi, encoded);
 	}
 }
