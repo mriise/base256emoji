@@ -4,8 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-match-lookup = "0.1.0"
-const-str = "0.4.3"
+heapless = "0.7.15"
 
 [profile.release]
 debug = true
