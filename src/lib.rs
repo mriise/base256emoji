@@ -20,8 +20,7 @@ pub type Alphabet = [char; 256];
 
 pub trait Base {
 	const ALPHABET: Alphabet;
-	// should be moved to std oncecell at some point
-
+	
 	fn get_index(c: char) -> Option<u8>;
 
 	fn decode(input: &str) -> Result<Vec<u8>, DecodeError> {
