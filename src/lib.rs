@@ -20,7 +20,7 @@ pub type Alphabet = [char; 256];
 
 pub trait Base {
 	const ALPHABET: Alphabet;
-	
+
 	fn get_index(c: char) -> Option<u8>;
 
 	fn decode(input: &str) -> Result<Vec<u8>, DecodeError> {
@@ -101,6 +101,8 @@ mod tests {
 	#[test]
 	fn juan() {
 		let hi = "hi juan!";
-		println!("{}: {}", hi, Emoji::encode(&hi.as_bytes().to_owned()));
+		let encoded = Emoji::encode(&hi.as_bytes().to_owned());
+		assert_eq!("😴🌟😅😬🤘🤤😻👏", encoded);
+		println!("{}: {}", hi, encoded);
 	}
 }
