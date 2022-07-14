@@ -4,5 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-heapless = "0.7.15"
-once_cell = "1.13.0"
+match-lookup = "0.1.0"
+const-str = "0.4.3"
+
+[profile.release]
+debug = true
