@@ -1,4 +1,8 @@
-use std::fmt;
+#![no_std]
+
+use core::fmt;
+extern crate alloc;
+use alloc::{vec, vec::Vec, string::String};
 
 #[derive(Debug, Clone)]
 pub struct DecodeError {
@@ -86,6 +90,9 @@ impl Base for Emoji {
 mod tests {
 	use crate::Base;
 	use crate::Emoji;
+
+	extern crate alloc;
+	use alloc::vec;
 
 	#[test]
 	fn byte1_rt() {
